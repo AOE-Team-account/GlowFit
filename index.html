@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GlowFit – Free Daily Workouts</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GlowFit">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffe3ea">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#fff6f3;--card:#fff;--ink:#2b2234;--mut:#8d8498;--pk:#ff5c7c;--pk2:#ff8fa6;--soft:#ffe6eb;--mint:#4fcfb1;--gold:#ffc24b;--line:#f3e4e8;--fig:#2b2234;--figfar:#a69cb2}
@@ -1214,7 +1221,7 @@ function renderOnb(){
   const st=ob.step,dots=`<div class="dots">${[1,2,3,4,5,6].map(i=>`<i class="${i<=st?'on':''}"></i>`).join('')}</div>`;
   const back=st>0?`<button class="back" data-a="obback">‹</button>`:'';
   let b='';
-  if(st===0){b=`<div class="ob"><div class="grow" style="text-align:center;padding-top:30px"><div style="font-size:64px">🌸</div><h1 style="font-size:38px">GlowFit</h1><p class="sub" style="font-size:17px;margin:4px 0 24px">Your free daily workout plan.<br>No sign-up. No paywall. Ever.</p><div class="figbox" style="max-width:340px;margin:0 auto" data-hero='["jacks","bridge","mclimb","sidelift","rollup"]'></div><p class="note" style="margin-top:18px">Cardio · Pilates · HIIT · Stretching<br>Animated stick-figure coaches show every move.</p></div><button class="btn" data-a="obnext">Let's go</button></div>`}
+  if(st===0){b=`<div class="ob"><div class="grow" style="text-align:center;padding-top:30px"><img src="icon.png" alt="GlowFit" width="112" height="112" style="border-radius:28px;box-shadow:0 10px 30px rgba(120,40,80,.3)" onerror="this.outerHTML='<div style=&quot;font-size:64px&quot;>🌸</div>'"><h1 style="font-size:38px;margin-top:14px">GlowFit</h1><p class="sub" style="font-size:17px;margin:4px 0 24px">Your free daily workout plan.<br>No sign-up. No paywall. Ever.</p><div class="figbox" style="max-width:340px;margin:0 auto" data-hero='["jacks","bridge","mclimb","sidelift","rollup"]'></div><p class="note" style="margin-top:18px">Cardio · Pilates · HIIT · Stretching<br>Animated stick-figure coaches show every move.</p></div><button class="btn" data-a="obnext">Let's go</button></div>`}
   if(st===1)b=`<div class="ob">${back}${dots}<h1>What should we call you?</h1><p class="sub">Optional. Just for your greetings.</p><div class="grow" style="padding-top:14px"><input class="tx" id="obname" maxlength="20" placeholder="Your name" value="${esc(ob.name)}"></div><button class="btn" data-a="obnext">Continue</button></div>`;
   if(st===2){const allOn=ob.zones.length===7;b=`<div class="ob">${back}${dots}<h1>Where do you want to slim down?</h1><p class="sub">Every workout will include moves for these. Pick as many as you like.</p><div class="grow" style="padding:14px 0"><div class="zg">${Object.entries(ZONES).map(([k,z])=>`<button class="opt ${ob.zones.includes(k)?'on':''}" data-a="obzone" data-v="${k}"><span class="ic">${z.e}</span><b>${z.n}</b></button>`).join('')}<button class="opt ${allOn?'on':''}" data-a="obzone" data-v="all"><span class="ic">✨</span><b>Full body</b></button></div></div><button class="btn" data-a="obnext" ${ob.zones.length?'':'style="opacity:.4"'}>Continue</button></div>`}
   if(st===3)b=`<div class="ob">${back}${dots}<h1>Your fitness level?</h1><p class="sub">You can change this any time without losing progress.</p><div class="grow" style="padding-top:14px">${LEVELS.map((l,i)=>`<button class="opt ${ob.level===i+1?'on':''}" data-a="oblevel" data-v="${i+1}"><span class="ic">${l.e}</span><span><b>${l.n}</b><small>${l.d}</small></span></button>`).join('')}</div><button class="btn" data-a="obnext" ${ob.level?'':'style="opacity:.4"'}>Continue</button></div>`;
