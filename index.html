@@ -1599,7 +1599,7 @@ function mixAudio(){try{if(navigator.audioSession&&navigator.audioSession.type!=
 mixAudio();
 function ensureAudio(){mixAudio();try{if(!AC){AC=new (window.AudioContext||window.webkitAudioContext)();AC.onstatechange=()=>{if(AC.state==='suspended'||AC.state==='interrupted')try{AC.resume()}catch(e){}}}if(AC.state!=='running')AC.resume()}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)ensureAudio()});
-function beep(f=800,d=.12){if(!S.sound||!AC)return;try{mixAudio();if(AC.state!=='running')AC.resume();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(.8,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
+function beep(f=800,d=.12){if(!S.sound||!AC)return;try{mixAudio();if(AC.state!=='running')AC.resume();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(1.0,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
 function say(t){if(!S.voice)return;try{mixAudio();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(trs(t));u.lang=S.lang==='zh'?(S.hant?'zh-TW':'zh-CN'):'en-US';u.rate=1.05;speechSynthesis.speak(u)}catch(e){}}
 
 /* ================= UI HELPERS ================= */
